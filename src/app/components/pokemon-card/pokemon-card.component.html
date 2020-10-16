@@ -1,0 +1,10 @@
+<div class="card card--{{ pokemon?.types[0].type.name }}" >
+    <div class="card--header">
+        <h2>{{ pokemon?.name }}</h2>
+        <span>#{{ number | number:'3.0' }}</span>
+    </div>
+    <div class="card--body">
+        <img [src]="pokemon?.sprites.other['official-artwork'].front_default" class="pokemon-sprite" />
+        <img src="../assets/pokeball4.png" class="card-image" />
+    </div>
+</div>

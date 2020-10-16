@@ -1,0 +1,8 @@
+<div class="pokemon-list">
+    <app-pokemon-card 
+        [data]="pokemon?.details" 
+        [number]="i+1" 
+        *ngFor="let pokemon of pokemonList; let i = index"
+        routerLink="/details/{{ pokemon?.name }}">
+    </app-pokemon-card>
+</div>

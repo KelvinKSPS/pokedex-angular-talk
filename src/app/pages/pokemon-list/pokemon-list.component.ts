@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PokemonListResult } from 'src/app/interfaces/pokemon-list.interface';
 import { ApiService } from 'src/app/services/api.service';
+import { Observable } from 'rxjs';
+import { Pokemon } from 'src/app/interfaces/pokemon.interface';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -10,23 +11,13 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class PokemonListComponent implements OnInit {
 
-  pokemonList: PokemonListResult[] = [];
+  pokemonList$: Observable<Pokemon[]>;
 
   constructor(private apiService: ApiService, private router: Router) {
 
   }
-
-  ngOnInit() {
-    this.apiService.getPokemonList()
-      .subscribe(list => {
-        this.pokemonList = list.results
-        this.pokemonList.forEach((result, index) => {
-          this.apiService.getPokemonDetails(result.name)
-            .subscribe(result => {
-              this.pokemonList[index].details = result;
-            })
-        })
-      })
+  ngOnInit(): void {
+    this.pokemonList$ = this.apiService.getPokemonList();
   }
 
   // navigateToDetails(name: string) {

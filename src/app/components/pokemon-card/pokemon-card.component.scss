@@ -1,57 +1,49 @@
-
 .card {
-    width: 300px;
-    height: 200px;
-    border-radius: 20px;
-    margin: 25px;
-    box-shadow: -7px 6px 5px -2px rgba(0, 0, 0, 0.19);
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
+  width: 100%;
+  min-width: 300px;
+  height: 200px;
+  border-radius: 20px;
+  // margin: 25px;
+  box-shadow: -7px 6px 5px -2px rgba(0, 0, 0, 0.19);
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
 }
 
 .card--header {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .card--body {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .card-image {
-    width: 150px;
-    height: 150px;
-    opacity: 0.3;
+  width: 50px;
+  height: 50px;
+  opacity: 0.3;
 
-    position: relative;
-    left: 40px;
+  position: relative;
+  top: 15px;
+  left: 10px;
 }
 
 .pokemon-sprite {
-    width: 120px;
-    position: relative;
-    left: 30px;
-    bottom: 10px;
+  width: 120px;
+  position: relative;
+  left: 30px;
+  bottom: 10px;
+  z-index: 3;
 }
 
-.card--grass {
-    background: #48d0b0;
-}
 
-.card--fire {
-    background: #fb6c6c;
-}
-
-.card--water {
-    background: #76bdfe;
-}
-
-.card--electric {
-    background: #ffd86f;
+.big {
+    background: #EEEEEE;
+    margin: 0;
 }
 
 //TO-DO all types

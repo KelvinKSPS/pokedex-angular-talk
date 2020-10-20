@@ -1,8 +1,9 @@
 <div class="pokemon-list">
+    <p *ngIf="!(pokemonList$ | async)">Loading...</p>
     <app-pokemon-card 
-        [data]="pokemon?.details" 
-        [number]="i+1" 
-        *ngFor="let pokemon of pokemonList; let i = index"
+        size="small"
+        [pokemon]="pokemon"
+        *ngFor="let pokemon of pokemonList$ | async; let i = index"
         routerLink="/details/{{ pokemon?.name }}">
     </app-pokemon-card>
 </div>

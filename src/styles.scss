@@ -1,1 +1,67 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+  min-width: 100%;
+}
+
+.card--fire {
+  background: #ee7f33;
+}
+.card--normal {
+  background: #a9a778;
+}
+.card--water {
+  background: #6890f0;
+}
+.card--grass {
+  background: #78c84f;
+}
+.card--ice {
+  background: #98d8d7;
+}
+.card--poison {
+  background: #a040a1;
+}
+.card--ground {
+  background: #e0c069;
+}
+.card--flying {
+  background: #a790ef;
+}
+.card--bug {
+  background: #a8b821;
+}
+.card--rock {
+  background: #b6a037;
+}
+.card--ghost {
+  background: #705797;
+}
+.card--dragon {
+  background: #724ef9;
+}
+.card--dark {
+  background: #6f5848;
+}
+.card--steel {
+  background: #b8b8d0;
+}
+.card--fairy {
+  background: #f4c8e2;
+}
+.card--psychic {
+  background: #e95587;
+}
+.card--electric {
+  background: #f8cf32;
+}
+.card--fighting {
+  background: #c03228;
+}

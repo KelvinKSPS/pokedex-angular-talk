@@ -12,5 +12,5 @@ export interface Pokemon {
         type: {
             name: string;
         }
-    }[]
+    }[];
 }

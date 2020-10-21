@@ -1,13 +1,54 @@
-<div class="card card--{{ pokemon?.types[0].type.name }}" [class.big]="size === 'big'">
-    <div class="card--header">
-        <h2>{{ pokemon?.name }}</h2>
-        <span>#{{ pokemon?.id | number:'3.0' }}</span>
+<div
+  class="card card--{{ pokemon?.type[0] | lowercase }}"
+  [class.big]="size === 'big'"
+>
+  <div class="card--header">
+    <h2>{{ pokemon?.name }}</h2>
+    <span>#{{ pokemon?.num }}</span>
+  </div>
+  <div class="card--body">
+    <img
+      src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{
+        pokemon?.id
+      }}.png"
+      loading="lazy"
+      class="pokemon-sprite"
+    />
+    <img src="../assets/pokeball4.png" class="card-image" />
+  </div>
+  <div class="card--details" *ngIf="size === 'big'">
+    <nav>
+      <ul>
+        <li [class.active]="tabActive === 1" (click)="tabActive = 1">
+          Evolutions
+        </li>
+        <li [class.active]="tabActive === 2" (click)="tabActive = 2">About</li>
+      </ul>
+    </nav>
+    <div *ngIf="tabActive === 1" class="tab-container-evolutions">
+      <div *ngIf="!pokemon?.next_evolution">
+          <p>Forma final</p>
+      </div>
+      <div
+        *ngFor="let evolution of pokemon?.next_evolution"
+        class="evolution-container"
+        (click)="goToPokemonDetails(evolution.num)"
+      >
+        <img
+          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{
+            +evolution.num
+          }}.png"
+          loading="lazy"
+          class="pokemon-sprite-tab"
+        />
+        <span class="evolution-text">{{ evolution.name }}</span>
+      </div>
     </div>
-    <div class="card--body">
-        <img src="../assets/images/{{pokemon?.id}}.png" loading="lazy" class="pokemon-sprite" />
-        <img src="../assets/pokeball4.png" class="card-image" />
+    <div *ngIf="tabActive === 2" class="tab-container-about">
+      <p><strong>Height:</strong></p>
+      <p>{{ pokemon?.height }}</p>
+      <p><strong>Weight:</strong></p>
+      <p>{{ pokemon?.weight }}</p>
     </div>
-    <div class="card--details">
-        
-    </div>
+  </div>
 </div>

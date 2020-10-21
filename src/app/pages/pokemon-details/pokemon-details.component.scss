@@ -1,7 +1,21 @@
 .container {
     display: flex;
     width: 100%;
+    margin: 0 auto;
     max-width: 1100px;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
+}
+
+.container nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+.container nav li {
+    display: inline-block;
+    
 }

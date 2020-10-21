@@ -20,8 +20,4 @@ export class PokemonListComponent implements OnInit {
     this.pokemonList$ = this.apiService.getPokemonList();
   }
 
-  // navigateToDetails(name: string) {
-  //   this.router.navigate([`/details/${name}`])
-  // }
-
 }

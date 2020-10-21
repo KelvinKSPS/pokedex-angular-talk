@@ -1,9 +1,10 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { DOCUMENT, Location } from '@angular/common';
+import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { Pokemon } from 'src/app/interfaces/pokemon.interface';
 import { HeaderService } from 'src/app/services/header.service';
+import { ColorService } from 'src/app/services/color.service';
 
 @Component({
   selector: 'app-pokemon-details',
@@ -16,26 +17,42 @@ export class PokemonDetailsComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private apiService: ApiService,
     private headerService: HeaderService,
-    @Inject(DOCUMENT) private document: HTMLDocument,
+    private colorService: ColorService,
+    private elementRef: ElementRef
   ) {}
+    id: string;
   pokemon: Pokemon;
+  backgroundColor: string;
 
   ngOnInit(): void {
-    const name = this.route.snapshot.params.name;
-    this.apiService.getPokemonDetails(name).subscribe((result) => {
-      this.pokemon = result;
-      this.document.body.classList.add(`card--${this.pokemon.types[0].type.name}`);
-      this.headerService.updateTitle(this.pokemon.name);
+    this.route.params.subscribe(params => {
+      this.id = params.id;
+      console.log(this.id);
+      this.apiService.getPokemonDetails(this.id).subscribe((result) => {
+        this.pokemon = result;
+        console.log(result);
+        this.setBackgroundColor([...this.pokemon.type]);
+        this.headerService.updateTitle('Pokémon');
+      });
     });
   }
 
+  ngOnDestroy(): void {
+    this.removeBackgroundColor();
+  }
+
   goback(event: any): void {
-    console.log(event);
     event.preventDefault();
     this.location.back();
   }
 
-  ngOnDestroy(): void {
-    this.document.body.classList.remove(`card--${this.pokemon.types[0].type.name}`);
+  private setBackgroundColor(types: any[]): void {
+    this.backgroundColor = this.colorService.getColors(types[0], types[1]);
+    this.elementRef.nativeElement.ownerDocument.body.style.background = this.backgroundColor;
   }
+
+  private removeBackgroundColor(): void {
+    this.elementRef.nativeElement.ownerDocument.body.style.background = '#fff';
+  }
+
 }

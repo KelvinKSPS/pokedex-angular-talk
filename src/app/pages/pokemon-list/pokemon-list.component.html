@@ -3,7 +3,9 @@
     <app-pokemon-card 
         size="small"
         [pokemon]="pokemon"
-        *ngFor="let pokemon of pokemonList$ | async; let i = index"
-        routerLink="/details/{{ pokemon?.name }}">
+        *ngFor="let pokemon of pokemonList$ | async"
+        routerLink="/details/{{ pokemon?.num }}"
+        style="cursor: pointer;"
+    >
     </app-pokemon-card>
 </div>

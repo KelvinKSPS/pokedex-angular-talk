@@ -27,10 +27,8 @@ export class PokemonDetailsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.id = params.id;
-      console.log(this.id);
       this.apiService.getPokemonDetails(this.id).subscribe((result) => {
         this.pokemon = result;
-        console.log(result);
         this.setBackgroundColor([...this.pokemon.type]);
         this.headerService.updateTitle('Pokémon');
       });
@@ -41,7 +39,7 @@ export class PokemonDetailsComponent implements OnInit, OnDestroy {
     this.removeBackgroundColor();
   }
 
-  goback(event: any): void {
+  goBack(event: any): void {
     event.preventDefault();
     this.location.back();
   }

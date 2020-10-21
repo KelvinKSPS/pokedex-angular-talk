@@ -1,14 +1,14 @@
 <form class="search-form" [formGroup]="searchForm">
     <input type="text" class="search-form__input" placeholder="Search by name" formControlName="text" />
 </form>
-<span style="text-align: center; color: #fff;">
+<!-- <span style="text-align: center; color: #fff;">
     <p>FormValue: {{ searchForm.value | json }}</p>
     <p>FormValid: {{ searchForm.valid }}</p>
     <p>Required: {{ searchForm.get('text').errors?.required || 'None' }}</p>
     <p>minLength: {{ searchForm.get('text').errors?.minlength | json }}</p>
     <p>Touched: {{ searchForm.get('text').touched }}</p>
     <p>Dirty: {{ searchForm.get('text').dirty }}</p>
-</span>
+</span> -->
 
 <div class="pokemon-list">
 

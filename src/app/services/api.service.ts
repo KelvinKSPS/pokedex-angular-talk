@@ -19,11 +19,14 @@ export class ApiService {
     );
   }
 
-  getPokemonDetails(pokemonNumber: string): Observable<Pokemon> {
+  getPokemonDetails(pokemonNumber: number): Observable<Pokemon> {
     return this.http.get<any>(environment.apiUrl).pipe(
       map((data: any) => data.pokemon),
-      switchMap((pokemons: Pokemon[]) => {
-        return of(pokemons.find(pokemon => pokemon.num === pokemonNumber));
+      map((pokemons: Pokemon[]) => {
+        if (pokemonNumber > 0 && pokemonNumber < 152) {
+          return pokemons.find(pokemon => Number(pokemon.num) === pokemonNumber);
+        }
+        return this.missingNo();
       })
     );
   }
@@ -38,6 +41,29 @@ export class ApiService {
         return pokemons.filter(pokemon => pokemon.name.toLowerCase().includes(pokemonName.toLowerCase().trim()));
       })
     );
+  }
+
+  private missingNo(): Pokemon {
+    return {
+      "id": "000",
+      "num": "000",
+      "name": "MissingNo.",
+      "img": "https://www.serebii.net/pokearth/sprites/rb/000.png",
+      "type": [
+        "Normal", "Flying"
+      ],
+      "height": "0.41 m",
+      "weight": "4.0 kg",
+      "candy": "None",
+      "egg": "Not in Eggs",
+      "spawn_chance": 0,
+      "avg_spawns": 0,
+      "spawn_time": "N/A",
+      "multipliers": null,
+      "weaknesses": [
+
+      ]
+    } as Pokemon;
   }
 
   // getPokemonList(): Observable<Pokemon[]> {

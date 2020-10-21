@@ -4,6 +4,7 @@ export interface Pokemon {
     name: string;
     height: string;
     weight: string;
+    img: string;
     type: string[];
     weaknesses: string[];
     next_evolution?: {

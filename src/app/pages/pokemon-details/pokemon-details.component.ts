@@ -27,7 +27,7 @@ export class PokemonDetailsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.id = params.id;
-      this.apiService.getPokemonDetails(this.id).subscribe((result) => {
+      this.apiService.getPokemonDetails(Number(this.id)).subscribe((result) => {
         this.pokemon = result;
         this.setBackgroundColor([...this.pokemon.type]);
         this.headerService.updateTitle('Pokémon');

@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: 'https://pokeapi.co/api/v2'
+  apiUrl: 'https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json'
 };

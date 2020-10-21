@@ -1,8 +1,25 @@
+<form class="search-form" [formGroup]="searchForm">
+    <input type="text" class="search-form__input" placeholder="Search by name" formControlName="text" />
+</form>
+<span style="text-align: center; color: #fff;">
+    <p>FormValue: {{ searchForm.value | json }}</p>
+    <p>FormValid: {{ searchForm.valid }}</p>
+    <p>Required: {{ searchForm.get('text').errors?.required || 'None' }}</p>
+    <p>minLength: {{ searchForm.get('text').errors?.minlength | json }}</p>
+    <p>Touched: {{ searchForm.get('text').touched }}</p>
+    <p>Dirty: {{ searchForm.get('text').dirty }}</p>
+</span>
+
 <div class="pokemon-list">
+
+    <app-loader *ngIf="!(pokemonList$ | async)"></app-loader>
+
     <app-pokemon-card 
-        [data]="pokemon?.details" 
-        [number]="i+1" 
-        *ngFor="let pokemon of pokemonList; let i = index"
-        routerLink="/details/{{ pokemon?.name }}">
+        size="small"
+        [pokemon]="pokemon"
+        *ngFor="let pokemon of pokemonList$ | async"
+        routerLink="/details/{{ pokemon?.num }}"
+        style="cursor: pointer;"
+    >
     </app-pokemon-card>
 </div>

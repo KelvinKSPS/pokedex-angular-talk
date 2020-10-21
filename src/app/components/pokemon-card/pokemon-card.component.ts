@@ -1,5 +1,6 @@
+import { DOCUMENT } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { PokemonListResult } from 'src/app/interfaces/pokemon-list.interface';
+import { Router } from '@angular/router';
 import { Pokemon } from 'src/app/interfaces/pokemon.interface';
 
 @Component({
@@ -7,14 +8,16 @@ import { Pokemon } from 'src/app/interfaces/pokemon.interface';
   templateUrl: './pokemon-card.component.html',
   styleUrls: ['./pokemon-card.component.scss']
 })
-export class PokemonCardComponent implements OnInit {
+export class PokemonCardComponent {
 
-  @Input('data') pokemon: Pokemon;
-  @Input() number: number;
+  @Input() pokemon: Pokemon;
+  @Input() size: 'small' | 'big';
+  tabActive = 1;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(private router: Router) {}
+ 
+  goToPokemonDetails(num: string): void {
+    this.router.navigateByUrl(`/details/${num}`);
   }
 
 }

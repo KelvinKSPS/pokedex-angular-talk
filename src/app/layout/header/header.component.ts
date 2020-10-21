@@ -1,4 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { HeaderService } from 'src/app/services/header.service';
 
 @Component({
   selector: 'app-header',
@@ -6,11 +8,12 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  @Input() title = 'Pokédex';
+  title$: Observable<string>;
 
-  constructor() { }
+  constructor(private headerService: HeaderService) { }
 
   ngOnInit(): void {
+    this.title$ = this.headerService.title$;
   }
 
 }

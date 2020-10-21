@@ -1,14 +1,11 @@
-import { Pokemon } from './pokemon.interface';
-
-export interface PokemonList {
+export interface PokemonListResult {
     count: number;
     next?: string;
     previous?: string;
-    results: PokemonListResult[];
+    results: PokemonList[];
 }
 
-export interface PokemonListResult {
+export interface PokemonList {
     name: string;
     url: string;
-    details: Pokemon;
 }

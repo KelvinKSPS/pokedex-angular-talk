@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { PokemonListResult } from 'src/app/interfaces/pokemon-list.interface';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
+import { Observable } from 'rxjs';
+import { Pokemon } from 'src/app/interfaces/pokemon.interface';
+import { HeaderService } from 'src/app/services/header.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -10,27 +13,28 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class PokemonListComponent implements OnInit {
 
-  pokemonList: PokemonListResult[] = [];
+  pokemonList$: Observable<Pokemon[]>;
+  searchForm: FormGroup;
+  
+  constructor(
+    private apiService: ApiService,
+    private headerService: HeaderService,
+  ) {}
 
-  constructor(private apiService: ApiService, private router: Router) {
+  ngOnInit(): void {
+    this.pokemonList$ = this.apiService.getPokemonList();
+    this.headerService.updateTitle('Pokédex');
 
+    this.searchForm = new FormGroup({
+      text: new FormControl('', [Validators.minLength(3), Validators.required])
+    });
+
+    this.searchForm.get('text').valueChanges.pipe(
+       // debounceTime(1000), // wait for typing
+       // distinctUntilChanged() // prevent repeated calls with repeated text
+    ).subscribe(value => {
+      // console.log(value); // demonstrating subscription
+      this.pokemonList$ = this.apiService.getPokemonListQueryByByName(value);
+    });
   }
-
-  ngOnInit() {
-    this.apiService.getPokemonList()
-      .subscribe(list => {
-        this.pokemonList = list.results
-        this.pokemonList.forEach((result, index) => {
-          this.apiService.getPokemonDetails(result.name)
-            .subscribe(result => {
-              this.pokemonList[index].details = result;
-            })
-        })
-      })
-  }
-
-  // navigateToDetails(name: string) {
-  //   this.router.navigate([`/details/${name}`])
-  // }
-
 }

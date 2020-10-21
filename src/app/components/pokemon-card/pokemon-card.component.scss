@@ -1,57 +1,101 @@
-
 .card {
-    width: 300px;
-    height: 200px;
-    border-radius: 20px;
-    margin: 25px;
-    box-shadow: -7px 6px 5px -2px rgba(0, 0, 0, 0.19);
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
+  width: 100%;
+  min-width: 300px;
+  height: 200px;
+  border-radius: 20px;
+  // margin: 25px;
+  box-shadow: -7px 6px 5px -2px rgba(0, 0, 0, 0.19);
+  display: flex;
+  flex-direction: column;
 }
 
 .card--header {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .card--body {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .card-image {
-    width: 150px;
-    height: 150px;
-    opacity: 0.3;
+  width: 50px;
+  height: 50px;
+  opacity: 0.3;
 
-    position: relative;
-    left: 40px;
+  position: relative;
+  top: 15px;
+  left: 10px;
 }
 
 .pokemon-sprite {
-    width: 120px;
-    position: relative;
-    left: 30px;
-    bottom: 10px;
+  width: 120px;
+  position: relative;
+  left: 30px;
+  bottom: 10px;
+  z-index: 3;
 }
 
-.card--grass {
-    background: #48d0b0;
+.pokemon-sprite-tab {
+  width: 100px;
+  z-index: 3;
 }
 
-.card--fire {
-    background: #fb6c6c;
+.big {
+    background: #EEEEEE;
+    margin: 0;
+    width: 90%;
+    // min-width: 500px;
+    height: 450px;
 }
 
-.card--water {
-    background: #76bdfe;
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-evenly;
 }
 
-.card--electric {
-    background: #ffd86f;
+nav li {
+  width: 40%;
+  font-size: 20px;
+  cursor: pointer;
 }
 
-//TO-DO all types
+.active {
+  font-weight: bold;
+}
+
+.tab-container-about {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 180px;
+}
+
+.tab-container-evolutions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 180px;
+}
+
+.evolution-container {
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid #DDD;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.evolution-container:hover {
+  border: 1px solid #CCC;
+  background: #c3c3f1;
+}

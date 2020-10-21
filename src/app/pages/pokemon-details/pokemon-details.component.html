@@ -1,3 +1,5 @@
-<p>pokemon-details works!</p>
-<a href="" (click)="goback($event)" > Voltar </a>
-<app-pokemon-card [data]="pokemon" [number]="pokemon?.id"></app-pokemon-card>
+
+<div class="container">
+    <app-pokemon-card [pokemon]="pokemon" size="big"></app-pokemon-card>
+    <a href="" (click)="goBack($event)" class="back">Voltar</a>
+</div>

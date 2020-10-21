@@ -1,1 +1,69 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: #1E3263;
+}
+
+html,
+body {
+  min-height: 100%;
+  min-width: 100%;
+  font-family: 'Roboto', sans-serif;
+}
+
+.card--fire {
+  background: rgb(238, 127, 51);
+}
+.card--normal {
+  background: rgb(169, 167, 120);
+}
+.card--water {
+  background: rgb(104, 144, 240);
+}
+.card--grass {
+  background: rgb(120, 200, 79);
+}
+.card--ice {
+  background: rgb(152, 216, 215);
+}
+.card--poison {
+  background: rgb(160, 64, 161);
+}
+.card--ground {
+  background: rgb(224, 192, 105);
+}
+.card--flying {
+  background: rgb(167, 144, 239);
+}
+.card--bug {
+  background: rgb(168, 184, 33);
+}
+.card--rock {
+  background: rgb(182, 160, 55);
+}
+.card--ghost {
+  background: rgb(112, 87, 151);
+}
+.card--dragon {
+  background: rgb(114, 78, 249);
+}
+.card--dark {
+  background: rgb(111, 88, 72);
+}
+.card--steel {
+  background: rgb(184, 184, 208);
+}
+.card--fairy {
+  background: rgb(244, 200, 226);
+}
+.card--psychic {
+  background: rgb(233, 85, 135);
+}
+.card--electric {
+  background: rgb(248, 207, 50);
+}
+.card--fighting {
+  background: rgb(192, 50, 40);
+}

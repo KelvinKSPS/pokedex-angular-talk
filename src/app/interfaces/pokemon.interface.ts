@@ -1,16 +1,13 @@
 export interface Pokemon {
-    id: number;
+    id: string;
+    num: string;
     name: string;
-    sprites: {
-        other: {
-            'official-artwork': {
-                front_default: string;
-            }
-        }
-    };
-    types: {
-        type: {
-            name: string;
-        }
-    }[]
+    height: string;
+    weight: string;
+    type: string[];
+    weaknesses: string[];
+    next_evolution?: {
+        num: string;
+        name: string;
+    }[];
 }

@@ -52,7 +52,7 @@ export class PokemonDetailsComponent implements OnInit, OnDestroy {
   }
 
   private removeBackgroundColor(): void {
-    this.elementRef.nativeElement.ownerDocument.body.style.background = '#fff';
+    this.elementRef.nativeElement.ownerDocument.body.style.background = '#1E3263';
   }
 
 }

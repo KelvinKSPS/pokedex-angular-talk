@@ -1,5 +1,14 @@
+<form class="search-form" [formGroup]="searchForm">
+    <input type="text" class="search-form__input" placeholder="Search by name" formControlName="text" />
+</form>
+<!-- <span style="text-align: center; color: #fff;">
+    {{ searchForm.value | json }}
+</span> -->
+
 <div class="pokemon-list">
-    <p *ngIf="!(pokemonList$ | async)">Loading...</p>
+
+    <app-loader *ngIf="!(pokemonList$ | async)"></app-loader>
+
     <app-pokemon-card 
         size="small"
         [pokemon]="pokemon"

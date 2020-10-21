@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { forkJoin, Observable, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { PokemonListResult } from '../interfaces/pokemon-list.interface';
-import { filter, map, mergeMap, switchMap } from 'rxjs/operators';
+import { delay, map, switchMap } from 'rxjs/operators';
 import { Pokemon } from '../interfaces/pokemon.interface';
 
 @Injectable({
@@ -15,14 +14,28 @@ export class ApiService {
 
   getPokemonList(): Observable<Pokemon[]> {
     return this.http.get<any>(environment.apiUrl).pipe(
-      map((data: any) => data.pokemon)
+      map((data: any) => data.pokemon),
+      delay(1500)
     );
   }
 
   getPokemonDetails(pokemonNumber: string): Observable<Pokemon> {
-    return this.getPokemonList().pipe(
+    return this.http.get<any>(environment.apiUrl).pipe(
+      map((data: any) => data.pokemon),
       switchMap((pokemons: Pokemon[]) => {
         return of(pokemons.find(pokemon => pokemon.num === pokemonNumber));
+      })
+    );
+  }
+
+  getPokemonListQueryByByName(pokemonName: string): Observable<Pokemon[]> {
+    return this.http.get<any>(environment.apiUrl).pipe(
+      map((data: any) => data.pokemon),
+      map((pokemons: Pokemon[]) => {
+        if (!pokemonName) {
+          return pokemons;
+        }
+        return pokemons.filter(pokemon => pokemon.name.toLowerCase().includes(pokemonName.toLowerCase().trim()));
       })
     );
   }
